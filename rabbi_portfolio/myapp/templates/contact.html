@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-header">
+      <h2>Get In Touch</h2>
+      <p class="subtitle">Have a project in mind or just want to discuss backend architecture? Ping me!</p>
+    </div>
+
+    <div class="glass-card contact-wrapper">
+      <!-- Contact Info Side -->
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p class="contact-desc">I'm currently open for freelance projects and full-time opportunities.</p>
+
+        <div class="info-item">
+          <div class="icon-box">
+            <span class="symbol">@</span>
+          </div>
+          <div class="details">
+            <span>Email</span>
+            <a href="mailto:rabbi@example.com">rabbi@example.com</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-box">
+            <span class="symbol">📍</span>
+          </div>
+          <div class="details">
+            <span>Location</span>
+            <p>Dhaka, Bangladesh</p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <h3>Follow Me</h3>
+          <div class="links">
+            <a href="#" class="social-btn">GitHub</a>
+            <a href="#" class="social-btn">LinkedIn</a>
+            <a href="#" class="social-btn">Twitter</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form Side -->
+      <div class="contact-form">
+        <form action="{% url 'contact' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required
+              placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn submit-btn">Send Message <span>&rarr;</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container" style="padding-top: 150px;">
+  <h2>My Projects</h2>
+  <div class="grid-2">
+    {% for project in projects %}
+    <div class="glass-card">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description|linebreaks }}</p>
+      <div style="margin-top: 1rem;">
+        {% if project.live_link %}
+        <a href="{{ project.live_link }}" target="_blank" class="btn"
+          style="font-size: 0.8rem; padding: 0.5rem 1rem;">Live Demo</a>
+        {% endif %}
+        {% if project.repo_link %}
+        <a href="{{ project.repo_link }}" target="_blank"
+          style="margin-left: 10px; color: var(--primary-color);">GitHub</a>
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}
+    <div class="glass-card">
+      <p>No projects to display.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

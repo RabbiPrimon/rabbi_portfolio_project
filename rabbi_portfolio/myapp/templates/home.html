@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container hero-grid animate-on-scroll">
+    <div class="hero-text">
+      <h3>{{ hero.subtitle|default:"Hello, I'm" }}</h3>
+      <h1>{{ hero.title|default:"Rabbi" }}</h1>
+      <p>{{ hero.description|default:"Full Stack Java & Django Developer | Backend Specialist" }}</p>
+      <div class="social-links-hero">
+        {% for link in social_links %}
+        <a href="{{ link.url }}" target="_blank" title="{{ link.platform }}"><i class="{{ link.icon_class }}"></i></a>
+        {% empty %}
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        {% endfor %}
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="{% url 'contact' %}" class="btn">Get in Touch</a>
+        <a href="{% url 'projects' %}" class="btn btn-outline" style="margin-left: 1rem;">View Work</a>
+      </div>
+    </div>
+    <div class="hero-image-container">
+      {% if hero.image %}
+      <img src="{{ hero.image.url }}" alt="{{ hero.title }}" class="hero-img">
+      {% else %}
+      <div class="hero-img-placeholder">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Counter Section -->
+<section class="stats-section">
+  <div class="container grid-4">
+    {% for counter in counters %}
+    <div class="stat-item">
+      <h3>{{ counter.count }}</h3>
+      <p>{{ counter.name }}</p>
+    </div>
+    {% empty %}
+    <div class="stat-item">
+      <h3>50+</h3>
+      <p>Projects Done</p>
+    </div>
+    <div class="stat-item">
+      <h3>20+</h3>
+      <p>Happy Clients</p>
+    </div>
+    <div class="stat-item">
+      <h3>5+</h3>
+      <p>Years Experience</p>
+    </div>
+    <div class="stat-item">
+      <h3>100%</h3>
+      <p>Success Rate</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2>About Me</h2>
+    <div class="about-content glass-card">
+      <div class="about-image">
+        {% if about.profile_image %}
+        <img src="{{ about.profile_image.url }}" alt="Profile"
+          style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color);">
+        {% else %}
+        <div
+          style="width: 200px; height: 200px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid var(--primary-color);">
+          <i class="fas fa-user" style="font-size: 5rem; color: #555;"></i>
+        </div>
+        {% endif %}
+      </div>
+      <div>
+        <p>{{ about.description|default:"I am a passionate developer..." }}</p>
+        <br>
+        <a href="{% url 'about' %}" class="btn" style="font-size: 0.9rem;">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+  <div class="container">
+    <h2>What I Do</h2>
+    <div class="grid-3">
+      {% for service in services %}
+      <div class="glass-card service-card">
+        <i class="fas {{ service.icon_class }} service-icon"></i>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+      {% empty %}
+      <div class="glass-card service-card">
+        <i class="fas fa-code service-icon"></i>
+        <h3>Web Development</h3>
+        <p>Building responsive and high-performance websites using modern technologies.</p>
+      </div>
+      <div class="glass-card service-card">
+        <i class="fas fa-server service-icon"></i>
+        <h3>Backend Engineering</h3>
+        <p>Developing robust server-side logic and database architectures.</p>
+      </div>
+      <div class="glass-card service-card">
+        <i class="fas fa-mobile-alt service-icon"></i>
+        <h3>API Development</h3>
+        <p>Creating scalable and secure RESTful APIs for mobile and web applications.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Skill Section -->
+<section id="skills">
+  <div class="container">
+    <h2>Skills</h2>
+    <div class="glass-card" style="text-align: center;">
+      {% for skill in skills %}
+      <span class="skill-tag">{{ skill.name }}</span>
+      {% empty %}
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Django</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience">
+  <div class="container">
+    <h2>Experience</h2>
+    <div class="grid-2">
+      {% for exp in experiences %}
+      <div class="glass-card">
+        <h3>{{ exp.role }}</h3>
+        <h4 style="color: var(--primary-color);">{{ exp.company }}</h4>
+        <p style="font-style: italic; opacity: 0.7;">{{ exp.start_date }} - {{ exp.end_date }}</p>
+        <p>{{ exp.description }}</p>
+      </div>
+      {% empty %}
+      <div class="glass-card">
+        <p>No experience added yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'experience' %}" class="btn">View Full Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+  <div class="container">
+    <h2>Projects</h2>
+    <div class="grid-3">
+      {% for project in projects %}
+      <div class="glass-card">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description|truncatewords:20 }}</p>
+        <a href="#" style="color: var(--primary-color); margin-top: 1rem; display: block;">View Project &rarr;</a>
+      </div>
+      {% empty %}
+      <div class="glass-card">
+        <p>No projects added yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'projects' %}" class="btn">See All Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <h2>Contact Me</h2>
+    <div class="glass-card" style="max-width: 600px; margin: 0 auto;">
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

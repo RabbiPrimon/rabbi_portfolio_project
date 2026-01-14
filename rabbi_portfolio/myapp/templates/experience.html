@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container" style="padding-top: 150px;">
+  <h2>My Experience</h2>
+
+  {% for exp in experiences %}
+  <div class="glass-card">
+    <h3>{{ exp.role }}</h3>
+    <h4 style="color: var(--primary-color);">{{ exp.company }}</h4>
+    <p class="date">{{ exp.start_date }} - {{ exp.end_date }}</p>
+    <div style="margin-top: 10px;">
+      {{ exp.description|linebreaks }}
+    </div>
+  </div>
+  {% empty %}
+  <div class="glass-card">
+    <p>No experience found.</p>
+  </div>
+  {% endfor %}
+
+</section>
+{% endblock %}

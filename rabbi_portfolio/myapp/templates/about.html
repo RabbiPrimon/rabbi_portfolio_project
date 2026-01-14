@@ -1,0 +1,1144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- About Hero Section with Enhanced Styling -->
+<section class="about-hero" style="padding: 150px 0 80px; position: relative; overflow: hidden;">
+  <!-- Animated Background Elements -->
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="floating-particles">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="about-hero-grid">
+      <div class="about-hero-text animate-on-scroll slide-in-left">
+        <div class="hero-text-content">
+          <h1 class="hero-title">
+            <span class="title-highlight">About</span> Me
+          </h1>
+          <div class="title-decoration">
+            <div class="decoration-line"></div>
+            <div class="decoration-dot"></div>
+          </div>
+          <p class="about-subtitle">Get to know more about my journey and expertise</p>
+          {% if about.description %}
+          <div class="about-intro glass-card">
+            <div class="intro-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            {{ about.description|linebreaks }}
+            <div class="intro-icon intro-icon-right">
+              <i class="fas fa-quote-right"></i>
+            </div>
+          </div>
+          {% endif %}
+          <div class="hero-cta">
+            <a href="#skills" class="btn btn-primary">Explore Skills</a>
+            <a href="#experience" class="btn btn-outline">View Experience</a>
+          </div>
+        </div>
+      </div>
+      <div class="about-hero-image animate-on-scroll slide-in-right">
+        {% if about.profile_image %}
+        <div class="profile-image-wrapper">
+          <div class="profile-glow"></div>
+          <img src="{{ about.profile_image.url }}" alt="Profile Image" class="profile-main-img">
+          <div class="profile-overlay">
+            <div class="profile-stats">
+              {% for counter in counters|slice:":3" %}
+              <div class="stat-mini animate-on-scroll">
+                <span class="stat-number">{{ counter.count }}</span>
+                <span class="stat-label">{{ counter.name }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="profile-decoration">
+            <div class="decoration-ring"></div>
+            <div class="decoration-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="profile-placeholder">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section with Enhanced Design -->
+<section id="skills" class="skills-section" style="padding: 80px 0; position: relative;">
+  <div class="skills-bg-pattern"></div>
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <h2>My Skills & Expertise</h2>
+      <p>Technologies and tools I work with</p>
+      <div class="section-divider">
+        <div class="divider-line"></div>
+        <div class="divider-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+    <div class="skills-grid">
+      {% for skill in skills %}
+      <div class="skill-card glass-card animate-on-scroll floating-card" data-delay="{{ forloop.counter0 }}">
+        <div class="skill-header">
+          <div class="skill-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <h3>{{ skill.name }}</h3>
+        </div>
+        <div class="skill-progress">
+          <div class="skill-progress-bar" style="width: 85%;"></div>
+          <div class="skill-progress-glow"></div>
+        </div>
+        <div class="skill-level">
+          <span>Expert</span>
+        </div>
+      </div>
+      {% empty %}
+      <div class="skill-card glass-card floating-card">
+        <div class="skill-header">
+          <div class="skill-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <h3>Python</h3>
+        </div>
+        <div class="skill-progress">
+          <div class="skill-progress-bar" style="width: 90%;"></div>
+          <div class="skill-progress-glow"></div>
+        </div>
+        <div class="skill-level">
+          <span>Expert</span>
+        </div>
+      </div>
+      <div class="skill-card glass-card floating-card">
+        <div class="skill-header">
+          <div class="skill-icon">
+            <i class="fab fa-js-square"></i>
+          </div>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="skill-progress">
+          <div class="skill-progress-bar" style="width: 85%;"></div>
+          <div class="skill-progress-glow"></div>
+        </div>
+        <div class="skill-level">
+          <span>Advanced</span>
+        </div>
+      </div>
+      <div class="skill-card glass-card floating-card">
+        <div class="skill-header">
+          <div class="skill-icon">
+            <i class="fab fa-react"></i>
+          </div>
+          <h3>React</h3>
+        </div>
+        <div class="skill-progress">
+          <div class="skill-progress-bar" style="width: 80%;"></div>
+          <div class="skill-progress-glow"></div>
+        </div>
+        <div class="skill-level">
+          <span>Advanced</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Experience Timeline with Enhanced Design -->
+<section id="experience" class="timeline-section" style="padding: 80px 0; background: var(--bg-secondary); position: relative;">
+  <div class="timeline-bg-decoration">
+    <div class="decoration-shape shape-1"></div>
+    <div class="decoration-shape shape-2"></div>
+  </div>
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="section-icon">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <h2>Work Experience</h2>
+      <p>My professional journey</p>
+      <div class="section-divider">
+        <div class="divider-line"></div>
+        <div class="divider-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+    <div class="timeline">
+      {% for experience in experiences %}
+      <div class="timeline-item animate-on-scroll slide-in-left" style="animation-delay: {{ forloop.counter0 }}s;">
+        <div class="timeline-marker">
+          <div class="marker-inner"></div>
+        </div>
+        <div class="timeline-content glass-card">
+          <div class="timeline-header">
+            <h3>{{ experience.role }}</h3>
+            <h4>{{ experience.company }}</h4>
+            <div class="timeline-date-badge">
+              <i class="fas fa-calendar-alt"></i>
+              {{ experience.start_date }} - {{ experience.end_date }}
+            </div>
+          </div>
+          <p>{{ experience.description|truncatewords:30 }}</p>
+          <div class="timeline-arrow"></div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="timeline-item animate-on-scroll">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content glass-card">
+          <div class="timeline-header">
+            <h3>Full Stack Developer</h3>
+            <h4>Tech Company</h4>
+            <div class="timeline-date-badge">
+              <i class="fas fa-calendar-alt"></i>
+              2023 - Present
+            </div>
+          </div>
+          <p>Developing modern web applications using Django and React.</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="{% url 'experience' %}" class="btn btn-primary">View All Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section" style="padding: 80px 0;">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <h2>Services I Offer</h2>
+      <p>How I can help you</p>
+    </div>
+    <div class="services-grid">
+      {% for service in services %}
+      <div class="service-card glass-card animate-on-scroll">
+        <div class="service-icon">
+          <i class="{{ service.icon_class|default:'fas fa-code' }}"></i>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+      {% empty %}
+      <div class="service-card glass-card">
+        <div class="service-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Web Development</h3>
+        <p>Full-stack web development services</p>
+      </div>
+      <div class="service-card glass-card">
+        <div class="service-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>Mobile Apps</h3>
+        <p>Cross-platform mobile application development</p>
+      </div>
+      <div class="service-card glass-card">
+        <div class="service-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3>Database Design</h3>
+        <p>Efficient and scalable database solutions</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Recent Projects Preview -->
+<section class="projects-preview" style="padding: 80px 0; background: var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <h2>Recent Projects</h2>
+      <p>Some of my latest work</p>
+    </div>
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card glass-card animate-on-scroll">
+        <div class="project-info">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description|truncatewords:20 }}</p>
+          <div class="project-links">
+            {% if project.live_link %}
+            <a href="{{ project.live_link }}" target="_blank" class="btn btn-sm">Live Demo</a>
+            {% endif %}
+            {% if project.repo_link %}
+            <a href="{{ project.repo_link }}" target="_blank" class="btn btn-outline btn-sm">Source Code</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No projects available yet.</p>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="{% url 'projects' %}" class="btn">View All Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section" style="padding: 80px 0;">
+  <div class="container">
+    <div class="cta-content glass-card animate-on-scroll">
+      <h2>Let's Work Together</h2>
+      <p>I'm always interested in new opportunities and exciting projects.</p>
+      <div style="margin-top: 2rem;">
+        <a href="{% url 'contact' %}" class="btn">Get In Touch</a>
+        <a href="{% url 'projects' %}" class="btn btn-outline" style="margin-left: 1rem;">View My Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.about-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.profile-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-main-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid var(--primary-color);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.profile-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-mini {
+  text-align: center;
+  color: white;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.skill-name {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.skill-progress {
+  background: var(--bg-color);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress-bar {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary-color);
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  position: relative;
+  padding-left: 80px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 4px solid var(--bg-color);
+}
+
+.timeline-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color);
+}
+
+.timeline-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.timeline-date {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  margin-bottom: 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  padding: 2rem;
+}
+
+.project-info h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.project-links {
+  margin-top: 1.5rem;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.cta-content {
+  text-align: center;
+  padding: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .profile-main-img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .profile-overlay {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 60px;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-marker {
+    left: 10px;
+  }
+}
+
+/* ===== ENHANCED ABOUT PAGE STYLES ===== */
+
+/* Hero Section Enhancements */
+.hero-bg-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(0, 210, 255, 0.1), rgba(255, 7, 112, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 80px;
+  height: 80px;
+  top: 30%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  background: var(--primary-color);
+  border-radius: 50%;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 6px;
+  height: 6px;
+  top: 20%;
+  left: 80%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  width: 4px;
+  height: 4px;
+  top: 70%;
+  left: 60%;
+  animation-delay: 3s;
+}
+
+.particle-3 {
+  width: 8px;
+  height: 8px;
+  top: 40%;
+  left: 90%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.7; }
+  25% { transform: translateY(-30px) translateX(20px); opacity: 1; }
+  50% { transform: translateY(-60px) translateX(-10px); opacity: 0.5; }
+  75% { transform: translateY(-30px) translateX(-20px); opacity: 0.8; }
+}
+
+/* Enhanced Hero Text */
+.hero-text-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.title-highlight {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-decoration {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.decoration-line {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  flex: 1;
+  border-radius: 2px;
+}
+
+.decoration-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  margin: 0 1rem;
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+/* Enhanced Profile Image */
+.profile-glow {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  border-radius: 50%;
+  opacity: 0.3;
+  filter: blur(20px);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.profile-decoration {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  pointer-events: none;
+}
+
+.decoration-ring {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+.decoration-dots {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.decoration-dots span {
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  animation: dotGlow 2s ease-in-out infinite;
+}
+
+.decoration-dots span:nth-child(2) { animation-delay: 0.5s; }
+.decoration-dots span:nth-child(3) { animation-delay: 1s; }
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes dotGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Enhanced Intro Section */
+.about-intro {
+  position: relative;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 20px 20px 0;
+}
+
+.intro-icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.intro-icon-right {
+  top: auto;
+  bottom: -10px;
+  left: auto;
+  right: -10px;
+}
+
+/* Hero CTA Buttons */
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 210, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 210, 255, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Enhanced Section Headers */
+.section-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.divider-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  flex: 1;
+}
+
+.divider-icon {
+  background: var(--bg-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  margin: 0 1rem;
+}
+
+/* Enhanced Skills Section */
+.skills-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 7, 112, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.skills-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.skill-icon {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.skill-card h3 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.skill-level {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.skill-level span {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.skill-progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: 4px;
+  opacity: 0.3;
+  filter: blur(5px);
+  animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Floating Cards Animation */
+.floating-card {
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+.floating-card:nth-child(2) { animation-delay: 1s; }
+.floating-card:nth-child(3) { animation-delay: 2s; }
+.floating-card:nth-child(4) { animation-delay: 3s; }
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Enhanced Timeline */
+.timeline-bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.decoration-shape {
+  position: absolute;
+  background: linear-gradient(45deg, rgba(0, 210, 255, 0.05), rgba(255, 7, 112, 0.05));
+  border-radius: 50%;
+}
+
+.decoration-shape.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -150px;
+}
+
+.decoration-shape.shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -100px;
+}
+
+.timeline-marker {
+  position: relative;
+}
+
+.marker-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.7; }
+}
+
+.timeline-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 210, 255, 0.1);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+}
+
+.timeline-arrow {
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid rgba(255, 255, 255, 0.1);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* Slide Animations */
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .shape {
+    display: none;
+  }
+
+  .floating-particles {
+    display: none;
+  }
+
+  .profile-decoration {
+    display: none;
+  }
+
+  .title-decoration {
+    margin-bottom: 1rem;
+  }
+
+  .section-icon {
+    font-size: 2rem;
+  }
+
+  .skill-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .skill-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-arrow {
+    display: none;
+  }
+}
+</style>
+
+{% endblock %}

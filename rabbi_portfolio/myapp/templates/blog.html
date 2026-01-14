@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container" style="padding-top: 150px;">
+  <h2>Latest Articles</h2>
+
+  {% for post in posts %}
+  <div class="glass-card">
+    <h3>{{ post.title }}</h3>
+    <p style="font-size: 0.9rem; color: #aaa;">Published on {{ post.created_at|date:"M d, Y" }}</p>
+    <div style="margin-top: 1rem;">
+      {{ post.content|truncatewords:30|linebreaks }}
+    </div>
+    <a href="#" style="color: var(--primary-color); display: inline-block; margin-top: 0.5rem;">Read More</a>
+  </div>
+  {% empty %}
+  <div class="glass-card">
+    <p>No blog posts available.</p>
+  </div>
+  {% endfor %}
+
+</section>
+{% endblock %}
