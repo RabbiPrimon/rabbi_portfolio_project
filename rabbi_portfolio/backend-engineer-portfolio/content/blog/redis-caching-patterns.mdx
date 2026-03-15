@@ -1,0 +1,37 @@
+﻿---
+title: "Redis Caching Patterns for Backend Systems"
+description: "Practical caching patterns for read-heavy services and cache consistency design."
+date: "2026-03-08"
+tags:
+  - Redis
+  - Caching
+  - Architecture
+---
+
+# Redis Caching Patterns for Backend Systems
+
+Redis can reduce response time dramatically, but poor key design causes inconsistency.
+
+## Read-through caching
+
+A standard flow:
+
+1. Check cache by deterministic key.
+2. If miss, fetch from DB.
+3. Store with TTL and tags.
+
+## Cache key design
+
+Use versioned keys:
+
+```text
+user:profile:v2:{user_id}
+```
+
+Versioning lets you invalidate globally by changing schema version.
+
+## Cache stampede prevention
+
+Use locking and jittered TTL values to avoid synchronized misses.
+
+Reliable caching is a data consistency strategy, not just a speed trick.

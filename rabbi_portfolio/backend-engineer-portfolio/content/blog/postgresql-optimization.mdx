@@ -1,0 +1,31 @@
+﻿---
+title: "PostgreSQL Optimization for Django Workloads"
+description: "A practical playbook for index strategy, query plans, and transaction behavior."
+date: "2026-03-03"
+tags:
+  - PostgreSQL
+  - Django
+  - Database
+---
+
+# PostgreSQL Optimization for Django Workloads
+
+Database performance is often the biggest factor in backend response time.
+
+## Start with query plans
+
+Use `EXPLAIN ANALYZE` to inspect execution paths.
+
+## Index intentionally
+
+Add indexes for filtering and ordering patterns, then confirm planner usage.
+
+## Avoid N+1 query patterns
+
+Combine ORM optimization with SQL-level indexing for best results.
+
+## Monitor over time
+
+Track slow query logs and vacuum statistics continuously.
+
+Database tuning is a continuous process, not a one-time task.

@@ -1,0 +1,29 @@
+﻿---
+title: "Celery Async Architecture at Scale"
+description: "Designing robust Celery pipelines with retries, idempotency, and observability."
+date: "2026-03-05"
+tags:
+  - Celery
+  - Async
+  - Reliability
+---
+
+# Celery Async Architecture at Scale
+
+Background workers allow APIs to stay fast under load.
+
+## Core principles
+
+- Tasks must be idempotent.
+- Retries need bounded backoff.
+- Queues should be separated by workload type.
+
+## Task routing
+
+Split queues for CPU-heavy and IO-heavy tasks.
+
+## Error handling
+
+Capture failures with centralized logging and dead-letter patterns.
+
+Celery works best when task contracts are explicit and observable.

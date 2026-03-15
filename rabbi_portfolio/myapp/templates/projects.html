@@ -1,29 +1,42 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 
 {% block content %}
-<section class="container" style="padding-top: 150px;">
-  <h2>My Projects</h2>
-  <div class="grid-2">
-    {% for project in projects %}
-    <div class="glass-card">
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description|linebreaks }}</p>
-      <div style="margin-top: 1rem;">
-        {% if project.live_link %}
-        <a href="{{ project.live_link }}" target="_blank" class="btn"
-          style="font-size: 0.8rem; padding: 0.5rem 1rem;">Live Demo</a>
-        {% endif %}
-        {% if project.repo_link %}
-        <a href="{{ project.repo_link }}" target="_blank"
-          style="margin-left: 10px; color: var(--primary-color);">GitHub</a>
-        {% endif %}
-      </div>
+<section class="section-gap">
+    <div class="container">
+        <div class="section-head">
+            <h1>Projects</h1>
+        </div>
+
+        <div class="grid grid-2">
+            {% for project in projects %}
+            <article class="card project-card">
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.summary }}</p>
+
+                <h3>Key Contributions</h3>
+                <ul>
+                    {% for point in project.highlights %}
+                    <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+
+                <div class="badge-row">
+                    {% for tech in project.stack %}
+                    <span class="badge">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="link-row">
+                    <a href="{{ project.repo_link }}" target="_blank" rel="noopener">GitHub Link</a>
+                    {% if project.live_link %}
+                    <a href="{{ project.live_link }}" target="_blank" rel="noopener">{{ project.live_label }}</a>
+                    {% else %}
+                    <span class="muted">{{ project.live_label }}</span>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
     </div>
-    {% empty %}
-    <div class="glass-card">
-      <p>No projects to display.</p>
-    </div>
-    {% endfor %}
-  </div>
 </section>
 {% endblock %}

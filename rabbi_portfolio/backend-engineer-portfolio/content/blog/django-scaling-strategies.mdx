@@ -1,0 +1,39 @@
+﻿---
+title: "Django Scaling Strategies for Production APIs"
+description: "How to scale Django and DRF services with caching, query tuning, and worker isolation."
+date: "2026-03-10"
+tags:
+  - Django
+  - DRF
+  - Performance
+---
+
+# Django Scaling Strategies for Production APIs
+
+When backend traffic increases, scaling is not just about adding servers. It is about reducing waste across the whole request lifecycle.
+
+## 1. Profile before optimization
+
+Use structured logs and metrics to identify the true bottlenecks:
+
+```python
+from django.db import connection
+
+print(len(connection.queries))
+```
+
+Measure query count, p95 latency, and cache hit ratio.
+
+## 2. Optimize ORM usage
+
+Use `select_related` and `prefetch_related` where relationship lookups are repeated.
+
+## 3. Add layered caching
+
+Use Redis with explicit invalidation for hot endpoints.
+
+## 4. Move non-critical paths to Celery
+
+Email, notifications, and heavy reports should run asynchronously.
+
+Scaling succeeds when architecture and operations improve together.
