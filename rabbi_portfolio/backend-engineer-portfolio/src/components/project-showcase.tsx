@@ -20,7 +20,8 @@ type SyncedRepo = {
   homepage: string | null;
 };
 
-const enableGithubProjectSync = process.env.NEXT_PUBLIC_ENABLE_GITHUB_PROJECT_SYNC === "true";
+// GitHub sync is enabled by default; set env var to "false" only if you want to disable it.
+const enableGithubProjectSync = process.env.NEXT_PUBLIC_ENABLE_GITHUB_PROJECT_SYNC !== "false";
 
 export function ProjectShowcase() {
   const [activeStack, setActiveStack] = useState("All");
